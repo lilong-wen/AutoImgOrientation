@@ -1,12 +1,13 @@
 import datetime
 import os
+import time
 import yaml
 import cv2
 import torch
 from network.model import anglePrediction
 import argparse
 
-checkpoints_folder = "./runs/Apr22_23-09-13_t640/checkpoints/"
+checkpoints_folder = "./weights/"
 
 device = 'cuda' if torch.cuda.is_available() else "cpu"
 
@@ -38,9 +39,11 @@ if __name__ == "__main__":
     parser.add_argument('--img', default='test.jpg')
     args = parser.parse_args()
 
-    start_time = datetime.datetime.now()
+    # start_time = datetime.datetime.now()
+    start_time = time.time()
     angle = test(args.img)
-    end_time = datetime.datetime.now()
+    # end_time = datetime.datetime.now()
+    end_time =time.time()
 
     print(f'predicted angle {angle}')
     print(f'used time {end_time - start_time}')
