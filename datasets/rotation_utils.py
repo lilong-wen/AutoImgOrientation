@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import random
 import matplotlib.pyplot as plt
 
 def rotate_bound(image, angle):
@@ -8,6 +9,9 @@ def rotate_bound(image, angle):
     # center
     (h, w) = image.shape[:2]
     (cX, cY) = (w // 2, h // 2)
+    R_rand = random.randint(100,200)
+    G_rand = random.randint(100,200)
+    B_rand = random.randint(100,200)
     # grab the rotation matrix (applying the negative of the
     # angle to rotate clockwise), then grab the sine and cosine
     # (i.e., the rotation components of the matrix)
@@ -21,7 +25,7 @@ def rotate_bound(image, angle):
     M[0, 2] += (nW / 2) - cX
     M[1, 2] += (nH / 2) - cY
     # perform the actual rotation and return the image
-    return cv2.warpAffine(image, M, (nW, nH))
+    return cv2.warpAffine(image, M, (nW, nH), borderValue=(R_rand,G_rand,B_rand))
 
 
 def correct_ratation(img):
