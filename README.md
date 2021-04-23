@@ -1,4 +1,4 @@
-# AutoImgOrientation
+# AutoImgOrientation Prediction
 
 ### how to 
 
