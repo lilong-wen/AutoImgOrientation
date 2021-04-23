@@ -9,9 +9,9 @@ def rotate_bound(image, angle):
     # center
     (h, w) = image.shape[:2]
     (cX, cY) = (w // 2, h // 2)
-    R_rand = random.randint(100,200)
-    G_rand = random.randint(100,200)
-    B_rand = random.randint(100,200)
+    R_rand = random.randint(0,255)
+    G_rand = random.randint(0,255)
+    B_rand = random.randint(0,255)
     # grab the rotation matrix (applying the negative of the
     # angle to rotate clockwise), then grab the sine and cosine
     # (i.e., the rotation components of the matrix)
