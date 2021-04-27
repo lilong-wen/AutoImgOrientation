@@ -1,8 +1,10 @@
+import random
 from torch.utils.data import Dataset
 import random
 import glob
 import cv2
 from .rotation_utils import rotate_bound
+from .rotation_utils import rotate
 
 
 class CameraData(Dataset):
@@ -20,11 +22,16 @@ class CameraData(Dataset):
 
     def __getitem__(self, idx):
 
-        angle_random = random.randint(0, 360)
+        angle_random = random.randint(20, 340)
 
         img = cv2.imread(self.img_list[idx])
 
-        img_rotated = rotate_bound(img, angle_random)
+        random_num = random.random()
+        if random_num > 0.5:
+
+            img_rotated = rotate_bound(img, angle_random)
+        else:
+            img_rotated = rotate(img, angle_random)
 
         if self.transform is not None:
             img_rotated = self.transform(img_rotated)
