@@ -12,3 +12,9 @@ dataset:
   num_workers: 4
   valid_size: 0.2
   root_dir: "./data/camera/"
+
+dataset_offline:
+  input_shape: (448, 448, 3)
+  num_workers: 4
+  valid_size: 0.2
+  root_dir: "./data/offline/"
