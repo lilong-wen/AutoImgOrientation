@@ -41,10 +41,14 @@ class Prediction(object):
 
         train_loader, valid_loader = self.dataset.get_data_loader()
 
-        model = anglePrediction(self.config['model_name']).to(self.device)
+        # model = anglePrediction(self.config['model_name']).to(self.device)
+        model = anglePrediction(self.config['model_name'])
+        model = torch.nn.DataParallel(model)
+        model = model.to(self.device)
+
         # print(model)
 
-        model = self._load_pre_trained_weights(model)
+        # model = self._load_pre_trained_weights(model)
 
         optimizer = torch.optim.Adam(model.parameters(),
                                      eval(self.config['learning_rate']),

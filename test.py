@@ -9,8 +9,8 @@ from network.model import anglePrediction
 import argparse
 from datasets.rotation_utils import rotate_bound_black
 
-checkpoints_folder = "./weights/"
-# checkpoints_folder = "./runs/Apr26_21-34-49_t640/checkpoints/"
+# checkpoints_folder = "./weights/"
+checkpoints_folder = "./runs/Apr28_18-01-19_t640_offline/checkpoints/"
 
 device = 'cuda' if torch.cuda.is_available() else "cpu"
 
@@ -36,6 +36,7 @@ def test(img_path):
 
     config = yaml.load(open("config.yaml", "r"), Loader=yaml.FullLoader)
     model = anglePrediction(config["model_name"]).to(device)
+    model = torch.nn.DataParallel(model)
     state_dict = torch.load(os.path.join(checkpoints_folder, 'model.pth'))
     model.load_state_dict(state_dict)
 
